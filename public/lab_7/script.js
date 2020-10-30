@@ -1,7 +1,32 @@
 function convertRestaurantsToCategories(restaurantList) {
-  // process your restaurants here!
-  return list;
+  const newDataShape = restaurantList.reduce((collection, item, i) => {
+    // for each item, check if we have a category for that item already
+    const findCat = collection.find((findItem) => findItem.label === item.category);
+    
+    if (!findCat) {
+      collection.push({
+        label: item.category,
+        y: 1
+      });
+    } else {
+      const position = collection.findIndex(el => el.label === item.category);
+      collection[position].y += 1;
+    }
+    return collection;
+  }, []);
+
+  console.table(newDataShape);
+
+  const div2 = document.createElement('div');
+  const obj = {
+    label: restaurantList[0].category,
+    y: restaurantList.length
+  };
+  div2.innerHTML = `<h2>What we want</h2> <br /> <h4>A category, how many things are in the category</h4><pre><code class="language-javascript">${JSON.stringify(obj)}</pre></code>`;
+
+  $('body').append(div2);
 }
+  
 
 function makeYourOptionsObject(datapointsFromRestaurantsList) {
   // set your chart configuration here!
@@ -13,7 +38,7 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
     animationEnabled: true,
     colorSet: 'customColorSet1',
     title: {
-      text: 'Change This Title'
+      text: 'Places To Eat Out In Future'
     },
     axisX: {
       interval: 1,
@@ -24,7 +49,7 @@ function makeYourOptionsObject(datapointsFromRestaurantsList) {
       gridColor: 'rgba(1,77,101,.1)',
       title: 'Change This Title',
       labelFontSize: 12,
-      scaleBreaks: {customBreaks: []} // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
+      scaleBreaks: {customBreaks: [40-50, 85-100, 140-175]} // Add your scale breaks here https://canvasjs.com/docs/charts/chart-options/axisy/scale-breaks/custom-breaks/
     },
     data: [{
       type: 'bar',

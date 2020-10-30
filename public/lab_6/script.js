@@ -22,13 +22,13 @@ function sortFunction(a, b, key) {
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive 
+  return Math.floor(Math.random() * (max - min + 1) + min); 
 }
 
 
 document.body.addEventListener('submit', async (e) => {
-  e.preventDefault(); // this stops whatever the browser wanted to do itself.
-  const form = $(e.target).serializeArray(); // here we're using jQuery to serialize the form
+  e.preventDefault(); 
+  const form = $(e.target).serializeArray(); 
   fetch('/api', {
     method: 'POST',
     headers: {
