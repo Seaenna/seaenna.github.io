@@ -14,17 +14,7 @@ function convertRestaurantsToCategories(restaurantList) {
     }
     return collection;
   }, []);
-
-  console.table(newDataShape);
-
-  const div2 = document.createElement('div');
-  const obj = {
-    label: restaurantList[0].category,
-    y: restaurantList.length
-  };
-  div2.innerHTML = `<h2>What we want</h2> <br /> <h4>A category, how many things are in the category</h4><pre><code class="language-javascript">${JSON.stringify(obj)}</pre></code>`;
-
-  $('body').append(div2);
+  return newDataShape;
 }
   
 
